@@ -98,3 +98,28 @@ pin_81 = port:PB19<1><default><default><default>
 
 
 Reboot and enjoy soft-spi on UEXT2!
+
+===============================================================================
+Using py_LCD together with sys_info.py to show CPU-Load, Uptime etc 
++ making sys_info.py start at system start.
+
+Note: This works on Debian not Android
+
+To start the python script at system start do the following steps:
+-download the files from git:
+	git clone https://github.com/HenningAust/py_LCD
+
+-copy the folder to /opt: 
+	cp -r py_LCD /opt
+
+-to run the scipt at system start we need to add an init script. I create on based on the skeleton file in /etc/init.d/ it is in the support folder, copy it over to /etc/init.d/
+	cp support/lcdSysInfo /etc/init.d/
+
+-you can check if everything works up to here by starting the script:
+	cd /etc/init.d
+	./lcdSysInfo start
+
+-If it works we have to add it to the standard default runlevel to start the script at boot time:
+	update-rc.d lcdSysInfo defaults
+
+
