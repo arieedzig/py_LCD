@@ -1,13 +1,11 @@
 ===============================================================================
-24.03.2014, Henning Aust
+06.11.2014, arieedzig
 
 Using Nokia 3310 UEXT-Module on UEXT2 of Olimexino A20
 
-This work is derived from the mod-lcd3310 for iMX233:
-https://github.com/OLIMEX/OLINUXINO/tree/master/SOFTWARE/iMX233/MOD-LCD3310
-
-and the pcd8544 python module:
-https://github.com/N8body/pcd8544
+This is only a fork from HenningAust py_LCD:
+https://github.com/HenningAust/py_LCD
+I only adapt this script for the newer version of pyA20
 
 ===============================================================================
 How it works: As there seems to be no working out of the box support for spi
