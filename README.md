@@ -2,19 +2,21 @@ py_LCD
 ======
 06.11.2014, arieedzig
 
-Python package for using MOD Nokia 3310 with Olinuxino A20 on UEXT2
+Python package for using MOD Nokia 3310 with Olinuxino A20EVB on UEXT2
 
 This is only a fork from HenningAust py_LCD:
+
 https://github.com/HenningAust/py_LCD
+
 I only adapt this script to the newer version of pyA20
 
 ===============================================================================
 
 Download the pyA20EVB package: 
 
-      # svn export https://github.com/OLIMEX/OLINUXINO/trunk/SOFTWARE/Python/
-      # cd pyA10Lime
-      # python setup.py install
+	# svn export https://github.com/OLIMEX/OLINUXINO/trunk/SOFTWARE/Python/
+	# cd pyA20EVB
+	# python setup.py install
 
 or
 
