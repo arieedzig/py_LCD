@@ -14,6 +14,7 @@ if os.name != 'posix':
 from datetime import datetime
 import psutil
 import lcd as lcd
+import netifaces as ni
 
 def bytes2human(n):
     """
@@ -60,6 +61,11 @@ def network(iface):
     stat = psutil.network_io_counters(pernic=True)[iface]
     return "%s:Tx%s,Rx%s" % \
            (iface, bytes2human(stat.bytes_sent), bytes2human(stat.bytes_recv))
+
+def ipaddr(iface):
+    ip = ni.ifaddresses(iface)[2][0]['addr']
+    return " %s" % \
+           (ip)
     
 def stats():
 
@@ -68,7 +74,7 @@ def stats():
     lcd.str(2,uptime())
     lcd.str(3,mem_usage())
     lcd.str(4,disk_usage('/'))
-    #lcd.str(3,network('wlan7'))
+    lcd.str(5,ipaddr('wlan7'))
     lcd.update()    
     
 def main():

@@ -13,6 +13,7 @@ SEND_CHR = 1
 SEND_CMD = 2
 X_RANGE = 84
 Y_RANGE = 48
+#Y_RANGE = 50
 DEFAULT_CONTRAST = 0xC0
 LCD_CACHE_SIZE = X_RANGE*Y_RANGE/8
 LCD_Memory = [0 for i in range(LCD_CACHE_SIZE)]
@@ -130,6 +131,7 @@ def chrXY(x, y, chr):
 	if(y > Y_RANGE): return
 
 	index=x*6+y*84 
+        #index=x*5+y*84
 	for i in range(6):
 		if(i==5):
 			LCD_Memory[index]=0
