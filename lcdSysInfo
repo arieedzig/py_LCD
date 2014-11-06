@@ -69,8 +69,8 @@ def ipaddr(iface):
     
 def stats():
 
-    lcd.str(0,"Olimexino:")
-#    lcd.longstr(2,"Welcome to Olimex world")
+    #lcd.str(0,"Olinuxino:")
+    lcd.longstr(0,"Olinuxino:")
     lcd.str(1,cpu_usage())
     lcd.str(2,uptime())
     lcd.str(3,mem_usage())
