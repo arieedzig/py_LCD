@@ -22,6 +22,10 @@ or
 
       pip install pyA20EVB
 
+Install required python library:
+
+	pip install psutil netifaces
+
 ===============================================================================
 Using py_LCD together with sys_info.py to show CPU-Load, Uptime etc 
 + making sys_info.py start at system start.
