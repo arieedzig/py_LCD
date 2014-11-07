@@ -38,7 +38,7 @@ To start the python script at system start do the following steps:
 
 	cp -r py_LCD /opt
 
-3. to run the scipt at system start we need to add an init script. I create on based on the skeleton file in /etc/init.d/ it is in the support folder, copy it over to /etc/init.d/
+3. to run the scipt at system start we need to add an init script. copy from support folder to /etc/init.d/
 
 	cp support/lcdSysInfo /etc/init.d/
 
