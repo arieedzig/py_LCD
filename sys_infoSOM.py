@@ -75,14 +75,23 @@ def stats():
     lcd.str(2,uptime())
     lcd.str(3,mem_usage())
     lcd.str(4,disk_usage('/'))
-    lcd.str(5,ipaddr('wlan7'))
+    try:
+    	lcd.str(5,ipaddr('wlan7'))
+    except:
+    	lcd.str(5,"    no ip yet    ")
+
     lcd.update()    
     
 def main():
-	lcd.init()
-	lcd.clear()
-	while(1):
-	    	stats()
-    		sleep(1)
+    try:
+	    lcd.init()
+	    lcd.clear()
+	    while True:
+	        stats()
+	        sleep(1)
+    except:
+	    lcd.init()
+	    lcd.clear()
+
 if __name__ == "__main__":
     main()
