@@ -142,17 +142,42 @@ def chrXY(x, y, chr):
 		LCD_Memory[index]=offset
 		index= index +1
 
-def str(row,string):
+def chrXYInverse(x, y, chr):
+        index=0
+        offset=0
+        i=0
+        font = default_FONT
+
+        if(x > X_RANGE): return
+        if(y > Y_RANGE): return
+
+        index=x*5+y*84
+        for i in range(6):
+                if(i==5):
+                        LCD_Memory[index]=255
+                        break
+                offset = ~(font[chr][i])
+                LCD_Memory[index]=offset
+                index= index +1
+
+
+def str(row,string,inv=0):
 	x = 0
 	for i in string:
-		chrXY(x,row,i)
+		if(inv):
+		   chrXYInverse(x,row,i)
+		else:
+		   chrXY(x,row,i)
 		x=x+1
 	#update()
 
-def longstr(row,string):
+def longstr(row,string,inv=0):
         x = 0
         for i in string:
-                chrXY(x,row,i)
+		if(inv):
+                   chrXYInverse(x,row,i)
+		else:
+		   chrXY(x,row,i)
                 x=x+1
 		if(x==16):
 			row=row+1
