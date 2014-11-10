@@ -16,6 +16,8 @@ import psutil
 import lcdSOM as lcd
 import netifaces as ni
 
+MAX_CHAR = 16
+
 def bytes2human(n):
     """
     >>> bytes2human(10000)
@@ -37,35 +39,52 @@ def cpu_usage():
     # load average, uptime
     av1 = psutil.cpu_percent(interval=None)
     #av1, av2, av3 = os.getloadavg()
-    return "Load:      %.1f%%" \
-            % (av1 )
+    cpu_fmt = "Load:%.1f%%" % (av1)
+    space = spacechr(cpu_fmt)
+    return "Load:%s%.1f%%" % (space,av1)
 
 def uptime():
     # uptime
     uptime = datetime.now() - datetime.fromtimestamp(psutil.BOOT_TIME)
-    return "Up:     %sh" \
-            % (str(uptime).split('.')[0])
+    up_fmt = "Up:%sh" % (str(uptime).split('.')[0])
+    space = spacechr(up_fmt)
+    return "Up:%s%sh" \
+            % (space,str(uptime).split('.')[0])
     
 def mem_usage():
     usage = psutil.phymem_usage()
-    return "Mem Used:   %s" \
-            % (bytes2human(usage.used))  
+    usage_fmt = "Mem Used:%s" % (bytes2human(usage.used))
+    space = spacechr(usage_fmt)
+    return "Mem Used:%s%s" \
+            % (space,bytes2human(usage.used))  
 
     
 def disk_usage(dir):
     usage = psutil.disk_usage(dir)
-    return "SDCard:   %s %.0f%%" \
-            % (bytes2human(usage.used), usage.percent)  
+    fmt = "SDCard:%s %.0f%%" % (bytes2human(usage.used), usage.percent)
+    space = spacechr(fmt)
+    return "SDCard:%s%s %.0f%%" \
+            % (fmt,bytes2human(usage.used), usage.percent)  
 
 def network(iface):
     stat = psutil.network_io_counters(pernic=True)[iface]
-    return "%s:Tx%s,Rx%s"% \
-           (iface, bytes2human(stat.bytes_sent), bytes2human(stat.bytes_recv))
+    fmt = "%s:Tx%s,Rx%s" % (iface, bytes2human(stat.bytes_sent), bytes2human(stat.bytes_recv))
+    space = spacechr(fmt)
+    return "%s:%sTx%s,Rx%s"% \
+           (iface, space, bytes2human(stat.bytes_sent), bytes2human(stat.bytes_recv))
 
 def ipaddr(iface):
     ip = ni.ifaddresses(iface)[2][0]['addr']
-    return " %s" % \
-           (ip)
+    fmt = "%s" % (ip)
+    space = spacechr(fmt)
+    return "%s%s" % (space,ip)
+
+def spacechr(str):
+    n = MAX_CHAR - len(str)
+    space = ""
+    for i in range(n):
+       space+= " "
+    return space
 
 def battinfo():
     bat = "/sys/class/power_supply/battery/uevent"
@@ -75,10 +94,7 @@ def battinfo():
 	if 'CAPACITY' in line:
 	    capacity = line.split('=')[1]
     fmt = "%s:%.0f%%" % (status.rstrip(),float(capacity.rstrip()))
-    n = 16 - len(fmt)
-    space = ""
-    for i in range(n):
-       space+= " "
+    space = spacechr(fmt)
     return "%s:%s%.0f%%" % (status.rstrip(),space,float(capacity.rstrip()))	
     
 def stats():
@@ -93,7 +109,7 @@ def stats():
     try:
     	lcd.str(5,ipaddr('wlan7'))
     except:
-    	lcd.str(5,"    no ip yet   ")
+        lcd.str(5,"IP:not connected")
 
     lcd.update()    
     
