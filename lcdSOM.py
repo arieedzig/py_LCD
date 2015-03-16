@@ -23,12 +23,22 @@ LCD_TEMP = [0 for i in range(X_RANGE)],[0 for i in range(Y_RANGE)]
 
 
 GPIO.init();
+# UEXT2
 pin_CS = port.PI16 # SPI1-CS
 pin_MOSI = port.PI18 #SPI1- MOSI
 pin_MISO = port.PI19 #SPI1 MISO
 pin_CLK = port.PI17 #SPI1 CLK
 pin_RST = port.PB18 #UEXT PIN 5 LCD RESET
 pin_DC = port.PB19 #UEXT PIN 6 LCD DC
+
+# UEXT1
+#pin_CS = port.PC19 # SPI2-CS
+#pin_MOSI = port.PC21 #SPI2- MOSI
+#pin_MISO = port.PC22 #SPI2 MISO
+#pin_CLK = port.PC20 #SPI2 CLK
+#pin_RST = port.PB20 #UEXT PIN 5 LCD RESET
+#pin_DC = port.PB21 #UEXT PIN 6 LCD DC
+
 
 GPIO.setcfg(pin_CS,GPIO.OUTPUT) # SPI1-CS
 GPIO.setcfg(pin_MOSI,GPIO.OUTPUT)  #SPI1- MOSI
