@@ -2,7 +2,7 @@ py_LCD
 ======
 06.11.2014, arieedzig
 
-Python package for using MOD Nokia 3310 with Olinuxino A20EVB on UEXT2
+Python package for using MOD Nokia 3310 with Olinuxino A20EVB on UEXT1
 
 This is only a fork from HenningAust py_LCD:
 
